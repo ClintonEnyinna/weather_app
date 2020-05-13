@@ -57,6 +57,7 @@ document
         clearInterval(handle);
         loadDiv.style.opacity = '0';
       } else if (width > 90 && !done) {
+        clearInterval(handle);
         alert('something went wrong, try modifying the name of the city!');
       } else {
         width += 1;
@@ -73,7 +74,7 @@ document
     temperature.innerText = `${dataInFarenheit.temp} °F`;
 
     done = true;
-    updateView(proccessData, dataInFarenheit);
+    updateView(proccessData);
   });
 
 document.querySelector('.hamburger').addEventListener('click', (e) => {

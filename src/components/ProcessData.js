@@ -3,8 +3,8 @@ const ProcessWeatherData = async (data) => {
   const { temp } = main;
   const { feelsLike } = main;
   const { humidity } = main;
-  const { tempMin } = main;
-  const { tempMax } = main;
+  const tempMin = main.temp_min;
+  const tempMax = main.temp_max;
   const { name } = data;
   const { country } = data.sys;
   const weather = data.weather[0];
