@@ -24,6 +24,8 @@ h3 {
 
 nav {
   display: flex;
+  position: relative;
+  z-index: 1;
   align-items: center;
   justify-content: space-between;
   padding: 50px 60px 0;
@@ -72,10 +74,13 @@ main {
 
 .side-data {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: calc(90% - 25px);
-  width: 35%;
+  width: 40%;
   max-width: 300px;
-  background-color: #363636;
+  background-color: #222222;
   top: 10px;
   right: 10px;
   opacity: 0;
@@ -83,18 +88,63 @@ main {
   border-radius: 4px;
 }
 
+.details {
+  width: 85%;
+}
+
+.details ul {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+}
+
+.details ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 15px;
+}
+
+.details span {
+  color: rgba(255, 255, 255, 1);
+}
+
 .load-data {
   position: absolute;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: #131313;
+  color: rgb(255, 255, 255);
   width: 100%;
-  height: 100%;
+  height: calc(90% - 72px);
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
+  opacity: 0;
+}
+
+.load-data h2 {
+  font-size: 35px;
+}
+
+.progress-bar {
+  height: 5px;
+  width: 450px;
+  border-radius: 2px;
+  background-color: rgb(73, 73, 73);
+}
+
+.progress-bar div {
+  height: inherit;
+  width: 1%;
+  background-color: #fff;
+  border-radius: 2px;
 }
 
 .show {

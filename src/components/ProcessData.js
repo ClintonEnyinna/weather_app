@@ -11,6 +11,7 @@ const ProcessWeatherData = async (data) => {
   const icon = weather.icon;
   const weatherType = weather.main;
   const weatherDesc = weather.description;
+  const wind = data.wind.speed;
 
   return {
     temp,
@@ -23,6 +24,7 @@ const ProcessWeatherData = async (data) => {
     icon,
     weatherType,
     weatherDesc,
+    wind,
   };
 };
 

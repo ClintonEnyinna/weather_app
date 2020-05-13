@@ -10,12 +10,35 @@ import './css/style.css';
 const page = document.querySelector('#content');
 page.append(Header(), Main(), Footer());
 
-const updateView = async ({ temp, name, country, icon }) => {
+const updateView = async (
+  {
+    temp,
+    name,
+    country,
+    icon,
+    weatherDesc,
+    humidity,
+    temp_min,
+    temp_max,
+    wind,
+  },
+  data
+) => {
   const tempData = document.querySelector('#temp-data');
   const city = document.querySelector('#city-span');
+  const min = document.querySelector('#min span');
+  const max = document.querySelector('#max span');
+  const humiditySpan = document.querySelector('#humidity span');
+  const windSpeed = document.querySelector('#wind span');
+  const weather = document.querySelector('#weather span');
 
   tempData.innerText = Math.round(temp) + '°';
   city.innerText = name + ', ' + country;
+  weather.innerText = weatherDesc;
+  min.innerText = temp_min + ' °C';
+  max.innerText = temp_max + ' °C';
+  humiditySpan.innerText = humidity + ' %';
+  windSpeed.innerText = wind + ' m/s';
 
   const iconImgUrl = await GetIconImage(icon);
   document.querySelector('#description img').src = iconImgUrl;
@@ -25,13 +48,34 @@ document
   .querySelector('#weather-data')
   .addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    const loadDiv = document.querySelector('#load-data');
+    loadDiv.style.opacity = '1';
+    const loader = document.querySelector('#progress-bar div');
+    let width = 1;
+    let done = false;
+
+    const handle = setInterval(() => {
+      if (width >= 100) {
+        clearInterval(handle);
+        loadDiv.style.opacity = '0';
+      } else if (width > 90 && !done) {
+      } else {
+        width++;
+        loader.style.width = width + '%';
+      }
+    }, 10);
+
     const location = document.querySelector('input[type="text"]').value;
     const weatherData = await GetWeatherData(location);
     const weatherInFarenheit = await GetWeatherData(location, 'imperial');
     const proccessData = await ProcessData(weatherData);
     const dataInFarenheit = await ProcessData(weatherInFarenheit);
+    const temperature = document.querySelector('#temperature span');
+    temperature.innerText = dataInFarenheit.temp + ' °F';
 
-    updateView(proccessData);
+    done = true;
+    updateView(proccessData, dataInFarenheit);
   });
 
 document.querySelector('.hamburger').addEventListener('click', (e) => {
@@ -58,6 +102,8 @@ window.onload = async () => {
   const dataInFarenheit = await GetWeatherData('Mexico City', 'imperial');
   const proccessDefaultData = await ProcessData(defaultData);
   const processedDataInFarenheit = await ProcessData(dataInFarenheit);
+  const tempFarenheit = document.querySelector('#temperature span');
+  tempFarenheit.innerText = processedDataInFarenheit.temp + ' °F';
 
   updateView(proccessDefaultData);
 };
