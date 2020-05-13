@@ -1,24 +1,24 @@
 const ProcessWeatherData = async (data) => {
   const main = await data.main;
-  const temp = main.temp;
-  const feels_like = main.feels_like;
-  const humidity = main.humidity;
-  const temp_min = main.temp_min;
-  const temp_max = main.temp_max;
-  const name = data.name;
-  const country = data.sys.country;
+  const { temp } = main;
+  const { feelsLike } = main;
+  const { humidity } = main;
+  const { tempMin } = main;
+  const { tempMax } = main;
+  const { name } = data;
+  const { country } = data.sys;
   const weather = data.weather[0];
-  const icon = weather.icon;
+  const { icon } = weather;
   const weatherType = weather.main;
   const weatherDesc = weather.description;
   const wind = data.wind.speed;
 
   return {
     temp,
-    feels_like,
+    feelsLike,
     humidity,
-    temp_min,
-    temp_max,
+    tempMin,
+    tempMax,
     name,
     country,
     icon,

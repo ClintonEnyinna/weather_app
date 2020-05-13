@@ -1,4 +1,4 @@
-import { element, text } from './MakeElement';
+import { element } from './MakeElement';
 
 const Footer = () => {
   const footer = element('FOOTER');

@@ -10,6 +10,9 @@
   "author": "Clinton Enyinna",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
   },

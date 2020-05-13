@@ -1,29 +1,26 @@
+import places from 'places.js';
 import GetWeatherData from './components/WeatherData';
-import ProcessData from './components/ProcessData.js';
+import ProcessData from './components/ProcessData';
 import GetIconImage from './components/GetIconImage';
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
-import places from 'places.js';
 import './css/style.css';
 
 const page = document.querySelector('#content');
 page.append(Header(), Main(), Footer());
 
-const updateView = async (
-  {
-    temp,
-    name,
-    country,
-    icon,
-    weatherDesc,
-    humidity,
-    temp_min,
-    temp_max,
-    wind,
-  },
-  data
-) => {
+const updateView = async ({
+  temp,
+  name,
+  country,
+  icon,
+  weatherDesc,
+  humidity,
+  tempMin,
+  tempMax,
+  wind,
+}) => {
   const tempData = document.querySelector('#temp-data');
   const city = document.querySelector('#city-span');
   const min = document.querySelector('#min span');
@@ -32,13 +29,13 @@ const updateView = async (
   const windSpeed = document.querySelector('#wind span');
   const weather = document.querySelector('#weather span');
 
-  tempData.innerText = Math.round(temp) + '°';
-  city.innerText = name + ', ' + country;
+  tempData.innerText = `${Math.round(temp)}°`;
+  city.innerText = `${name}, ${country}`;
   weather.innerText = weatherDesc;
-  min.innerText = temp_min + ' °C';
-  max.innerText = temp_max + ' °C';
-  humiditySpan.innerText = humidity + ' %';
-  windSpeed.innerText = wind + ' m/s';
+  min.innerText = `${tempMin} °C`;
+  max.innerText = `${tempMax} °C`;
+  humiditySpan.innerText = `${humidity} %`;
+  windSpeed.innerText = `${wind} m/s`;
 
   const iconImgUrl = await GetIconImage(icon);
   document.querySelector('#description img').src = iconImgUrl;
@@ -60,9 +57,10 @@ document
         clearInterval(handle);
         loadDiv.style.opacity = '0';
       } else if (width > 90 && !done) {
+        alert('something went wrong, try modifying the name of the city!');
       } else {
-        width++;
-        loader.style.width = width + '%';
+        width += 1;
+        loader.style.width = `${width}%`;
       }
     }, 10);
 
@@ -72,7 +70,7 @@ document
     const proccessData = await ProcessData(weatherData);
     const dataInFarenheit = await ProcessData(weatherInFarenheit);
     const temperature = document.querySelector('#temperature span');
-    temperature.innerText = dataInFarenheit.temp + ' °F';
+    temperature.innerText = `${dataInFarenheit.temp} °F`;
 
     done = true;
     updateView(proccessData, dataInFarenheit);
@@ -95,7 +93,7 @@ const options = {
   type: 'city',
 };
 
-const placesInstance = places(config).configure(options);
+places(config).configure(options);
 
 window.onload = async () => {
   const defaultData = await GetWeatherData('Mexico City');
@@ -103,7 +101,7 @@ window.onload = async () => {
   const proccessDefaultData = await ProcessData(defaultData);
   const processedDataInFarenheit = await ProcessData(dataInFarenheit);
   const tempFarenheit = document.querySelector('#temperature span');
-  tempFarenheit.innerText = processedDataInFarenheit.temp + ' °F';
+  tempFarenheit.innerText = `${processedDataInFarenheit.temp} °F`;
 
   updateView(proccessDefaultData);
 };
