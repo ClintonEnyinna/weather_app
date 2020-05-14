@@ -49,8 +49,10 @@ document
     const loadDiv = document.querySelector('#load-data');
     loadDiv.style.opacity = '1';
     const loader = document.querySelector('#progress-bar div');
-    let width = 1;
+    let width = 0;
     let done = false;
+    const timeIntervals = setInterval(() => {});
+    for (let i = 0; i < timeIntervals; i += 1) clearInterval(i);
 
     const handle = setInterval(() => {
       if (width >= 100) {
@@ -60,8 +62,8 @@ document
         clearInterval(handle);
         alert('something went wrong, try modifying the name of the city!');
       } else {
-        width += 1;
         loader.style.width = `${width}%`;
+        width += 1;
       }
     }, 10);
 
