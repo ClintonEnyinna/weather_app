@@ -13,7 +13,7 @@ OpenWeather api was used to get weather data of different city all around the wo
 
 ## Live Demo
 
-[Live link](https://raw.githack.com/ClintonEnyinna/weather_app/develop/dist/index.html)
+[Live link](https://rawcdn.githack.com/ClintonEnyinna/weather_app/4169cbab5f04dfd52c721f431ece846f0602b5c7/dist/index.html)
 
 ## Prerequisites
 
