@@ -34,8 +34,6 @@ const updateView = async ({
 
   const tempUnit = tempFormat === 'celsius' ? 'C' : 'F';
 
-  console.log(tempUnit, tempFormat);
-
   tempData.innerText = `${Math.round(temp)}° ${tempUnit}`;
   temperature.innerText = `${temp} ° ${tempUnit}`;
   city.innerText = `${name}, ${country}`;

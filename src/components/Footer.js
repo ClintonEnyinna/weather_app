@@ -42,7 +42,7 @@ const Footer = () => {
     farenheitRadio,
     farenheitLabel,
     input,
-    btn
+    btn,
   );
   footer.append(citySpan, form);
 
