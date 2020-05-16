@@ -10,6 +10,8 @@ import './css/style.css';
 const page = document.querySelector('#content');
 page.append(Header(), Main(), Footer());
 
+let tempFormat;
+
 const updateView = async ({
   temp,
   name,
@@ -22,6 +24,7 @@ const updateView = async ({
   wind,
 }) => {
   const tempData = document.querySelector('#temp-data');
+  const temperature = document.querySelector('#temperature span');
   const city = document.querySelector('#city-span');
   const min = document.querySelector('#min span');
   const max = document.querySelector('#max span');
@@ -29,11 +32,16 @@ const updateView = async ({
   const windSpeed = document.querySelector('#wind span');
   const weather = document.querySelector('#weather span');
 
-  tempData.innerText = `${Math.round(temp)}°`;
+  const tempUnit = tempFormat === 'celsius' ? 'C' : 'F';
+
+  console.log(tempUnit, tempFormat);
+
+  tempData.innerText = `${Math.round(temp)}° ${tempUnit}`;
+  temperature.innerText = `${temp} ° ${tempUnit}`;
   city.innerText = `${name}, ${country}`;
   weather.innerText = weatherDesc;
-  min.innerText = `${tempMin} °C`;
-  max.innerText = `${tempMax} °C`;
+  min.innerText = `${tempMin} ° ${tempUnit}`;
+  max.innerText = `${tempMax} ° ${tempUnit}`;
   humiditySpan.innerText = `${humidity} %`;
   windSpeed.innerText = `${wind} m/s`;
 
@@ -72,11 +80,14 @@ document
     const weatherInFarenheit = await GetWeatherData(location, 'imperial');
     const proccessData = await ProcessData(weatherData);
     const dataInFarenheit = await ProcessData(weatherInFarenheit);
-    const temperature = document.querySelector('#temperature span');
-    temperature.innerText = `${dataInFarenheit.temp} °F`;
 
     done = true;
-    updateView(proccessData);
+
+    tempFormat = document.querySelector('input[name=temperature]:checked')
+      .value;
+
+    if (tempFormat === 'celsius') updateView(proccessData);
+    else updateView(dataInFarenheit);
   });
 
 document.querySelector('.hamburger').addEventListener('click', (e) => {
@@ -104,7 +115,7 @@ window.onload = async () => {
   const proccessDefaultData = await ProcessData(defaultData);
   const processedDataInFarenheit = await ProcessData(dataInFarenheit);
   const tempFarenheit = document.querySelector('#temperature span');
-  tempFarenheit.innerText = `${processedDataInFarenheit.temp} °F`;
+  tempFarenheit.innerText = `${processedDataInFarenheit.temp} °C`;
 
   updateView(proccessDefaultData);
 };
