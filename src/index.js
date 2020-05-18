@@ -30,7 +30,6 @@ const updateView = async ({
   const max = document.querySelector('#max span');
   const humiditySpan = document.querySelector('#humidity span');
   const windSpeed = document.querySelector('#wind span');
-  const weather = document.querySelector('#weather span');
 
   const tempUnit = tempFormat === 'celsius' ? 'C' : 'F';
 
@@ -109,11 +108,8 @@ places(config).configure(options);
 
 window.onload = async () => {
   const defaultData = await GetWeatherData('Mexico City');
-  const dataInFarenheit = await GetWeatherData('Mexico City', 'imperial');
   const proccessDefaultData = await ProcessData(defaultData);
-  const processedDataInFarenheit = await ProcessData(dataInFarenheit);
-  const tempFarenheit = document.querySelector('#temperature span');
-  tempFarenheit.innerText = `${processedDataInFarenheit.temp} °C`;
+  tempFormat = 'celsius';
 
   updateView(proccessDefaultData);
 };
