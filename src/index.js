@@ -30,6 +30,7 @@ const updateView = async ({
   const max = document.querySelector('#max span');
   const humiditySpan = document.querySelector('#humidity span');
   const windSpeed = document.querySelector('#wind span');
+  const weather = document.querySelector('#weather span');
 
   const tempUnit = tempFormat === 'celsius' ? 'C' : 'F';
 
