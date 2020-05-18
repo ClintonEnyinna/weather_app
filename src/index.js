@@ -109,11 +109,8 @@ places(config).configure(options);
 
 window.onload = async () => {
   const defaultData = await GetWeatherData('Mexico City');
-  const dataInFarenheit = await GetWeatherData('Mexico City', 'imperial');
   const proccessDefaultData = await ProcessData(defaultData);
-  const processedDataInFarenheit = await ProcessData(dataInFarenheit);
-  const tempFarenheit = document.querySelector('#temperature span');
-  tempFarenheit.innerText = `${processedDataInFarenheit.temp} °C`;
+  tempFormat = 'celsius';
 
   updateView(proccessDefaultData);
 };
