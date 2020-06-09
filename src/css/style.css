@@ -124,7 +124,7 @@ main {
   background-color: #131313;
   color: rgb(255, 255, 255);
   width: 100%;
-  height: calc(90% - 72px);
+  height: calc(90% - 22px);
   top: 0;
   bottom: 0;
   right: 0;
@@ -286,5 +286,13 @@ footer label {
 
   footer {
     height: 30%;
+  }
+
+  .details {
+    width: 90%;
+  }
+
+  .details ul li {
+    padding: 10px 0;
   }
 }
