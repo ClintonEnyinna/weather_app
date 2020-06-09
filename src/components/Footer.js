@@ -36,14 +36,10 @@ const Footer = () => {
   const citySpan = element('SPAN');
   citySpan.setAttribute('id', 'city-span');
 
-  form.append(
-    celsiusRadio,
-    celsiusLabel,
-    farenheitRadio,
-    farenheitLabel,
-    input,
-    btn,
-  );
+  const tempDiv = element('DIV');
+  tempDiv.append(celsiusRadio, celsiusLabel, farenheitRadio, farenheitLabel);
+
+  form.append(tempDiv, input, btn);
   footer.append(citySpan, form);
 
   return footer;
