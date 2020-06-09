@@ -228,8 +228,13 @@ footer label {
     height: calc(80% - 22px);
   }
 
+  .side-data {
+    height: calc(80% - 20px);
+    width: 50%;
+  }
+
   .main-data {
-    padding: 80px 20px;
+    padding: 40px 20px;
   }
 
   .temp-data {
@@ -254,12 +259,32 @@ footer label {
     flex-direction: column;
   }
 
+  form div {
+    padding-bottom: 10px;
+  }
+
   footer input[type='text'] {
-    margin: 10px 0;
+    margin-bottom: 10px;
   }
 
   footer button {
+    margin-left: 0;
+    margin-top: 10px;
     align-self: center;
-    margin: 0;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  main {
+    height: calc(70% - 22px);
+  }
+
+  .side-data {
+    height: calc(70% - 20px);
+    width: 50%;
+  }
+
+  footer {
+    height: 30%;
   }
 }
